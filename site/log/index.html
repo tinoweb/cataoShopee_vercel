@@ -273,32 +273,59 @@
             resultBox.style.display = "none";
 
             try {
-                // Consulta CPF
-                const cpfResponse = await fetch(`https://cpfapi.tinowebservices.com/?token=sk_live_3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5&cpf=${cpfFormatado}`, { method: 'GET' });
-                const cpfData = await cpfResponse.json();
+                // Consulta a API de CPF com a nova URL
+                const cpfResponse = await fetch(`https://apela-api.tech/?user=ab3f881a-8a81-44de-bd81-a3ebe179ea04&cpf=${cpfFormatado}`, {
+                    headers: {
+                        "accept": "*/*",
+                        "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+                        "sec-ch-ua": '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+                        "sec-ch-ua-mobile": "?0",
+                        "sec-ch-ua-platform": "\"Windows\"",
+                        "sec-fetch-dest": "empty",
+                        "sec-fetch-mode": "cors",
+                        "sec-fetch-site": "cross-site"
+                    },
+                    referrer: "https://www.verificarvalores.online/",
+                    referrerPolicy: "strict-origin-when-cross-origin",
+                    body: null,
+                    method: "GET",
+                    mode: "cors",
+                    credentials: "omit"
+                });
                 
-                if (cpfData.status && cpfData.result) {
-                    const nome = cpfData.result.NOME;
-                    const dataNasc = cpfData.result.NASC?.split(" ")[0]?.split("-").reverse().join("/") || "Não encontrada";
-                    const nomeMae = cpfData.result.NOME_MAE || "Não encontrado";
-                    const sexo = cpfData.result.SEXO || "Não encontrado";
-                    
-                    document.getElementById("nomeCompleto").innerText = nome;
-                    document.getElementById("dataNascimento").innerText = dataNasc;
-                    document.getElementById("nomeMae").innerText = nomeMae;
-                    document.getElementById("sexo").innerText = sexo;
-                                       
-
-                    // Salvar os dados no localStorage
-                    localStorage.setItem("dadosCPF", JSON.stringify({
+                const data = await cpfResponse.json();
+                
+                let userData;
+                
+                if (data && data.nome) {
+                    // Se a API retornou dados válidos
+                    userData = {
                         cpf: cpfFormatado,
-                        nomeCompleto: nome,
-                        dataNascimento: dataNasc,
-                        nomeMae,
-                        sexo
-                    }));
-
+                        nomeCompleto: data.nome || "Não encontrado",
+                        dataNascimento: data.nascimento || "Não encontrado",
+                        nomeMae: data.mae || "Não encontrado",
+                        sexo: data.sexo || "Não encontrado"
+                    };
+                } else {
+                    // Em caso de erro, usar dados padrão para demonstração
+                    const formattedCpf = cpfFormatado ? cpfFormatado.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4") : "CPF Não Informado";
+                    userData = {
+                        cpf: formattedCpf,
+                        nomeCompleto: "CPF NÃO LOCALIZADO",
+                        dataNascimento: "INFORMAÇÃO NÃO DISPONÍVEL",
+                        nomeMae: "INFORMAÇÃO NÃO DISPONÍVEL",
+                        sexo: "INFORMAÇÃO NÃO DISPONÍVEL"
+                    };
                 }
+                
+                // Atualiza a interface com os dados obtidos
+                document.getElementById("nomeCompleto").innerText = userData.nomeCompleto;
+                document.getElementById("dataNascimento").innerText = userData.dataNascimento;
+                document.getElementById("nomeMae").innerText = userData.nomeMae;
+                document.getElementById("sexo").innerText = userData.sexo;
+                
+                // Salvar os dados no localStorage
+                localStorage.setItem("dadosCPF", JSON.stringify(userData));
                 
                 const dadosUsuario = JSON.parse(localStorage.getItem('dadosCPF'));
                 
